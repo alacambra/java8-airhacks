@@ -26,6 +26,13 @@ public class CollectionTest {
 
         assertThat(jDevelopers.size(), is(2));
 
+        double averageAge = developers.parallelStream().
+                filter((d) -> d.getLanguage().startsWith("j")).
+                mapToInt((d) -> d.getAge()).
+                average().
+                orElse(0);
+        System.out.println("averageAge = " + averageAge);
+
     }
 
 }
