@@ -1,16 +1,18 @@
 package com.airhacks;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import javax.validation.constraints.Size;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 /**
  *
  * @author airhacks.com
  */
-@Stateless
+@RequestScoped
 @Path("configuration")
 public class ConfigurationResource {
 
@@ -21,6 +23,11 @@ public class ConfigurationResource {
     @GET
     public String script() {
         return myScript.get();
+    }
+
+    @POST
+    public void save(@Size(min = 5) String script) {
+        System.out.println("-- " + script);
     }
 
 }
