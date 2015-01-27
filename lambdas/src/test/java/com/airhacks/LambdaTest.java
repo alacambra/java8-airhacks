@@ -19,6 +19,24 @@ public class LambdaTest {
     @Test
     public void plane() {
         Flyable f = (int s) -> System.out.println("flying " + s);
+        f.fly(42);
+    }
+
+    @Test
+    public void handles() {
+        Flyable f = this::something;
+        f.fly(2);
+
+        Flyable another = LambdaTest::somethingStatic;
+        another.fly(3);
+    }
+
+    public void something(int speed) {
+        System.out.println("handle speed : " + speed);
+    }
+
+    public static void somethingStatic(int speed) {
+        System.out.println("handle speed : " + speed);
     }
 
 }

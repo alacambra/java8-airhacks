@@ -4,7 +4,7 @@ package com.airhacks;
  *
  * @author airhacks.com
  */
-@FunctionalInterface
+//@FunctionalInterface
 public interface Flyable {
 
     void fly(int speed);
