@@ -32,7 +32,7 @@ public class LambdaTest {
     }
 
     public void something(int speed) {
-        System.out.println("handle speed : " + speed);
+        LogProvider.get().accept("logging: " + speed);
     }
 
     public static void somethingStatic(int speed) {
