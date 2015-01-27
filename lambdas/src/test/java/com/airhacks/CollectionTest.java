@@ -2,6 +2,7 @@ package com.airhacks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,7 +19,7 @@ public class CollectionTest {
         List<Developer> developers = new ArrayList<>();
         developers.add(new Developer("duke", "java", 5));
         developers.add(new Developer("larry", "go", 2));
-        developers.add(new Developer("brandon", "javascript", 6));
+        developers.add(new Developer("brandon", "javascript", 5));
 
         List<Developer> jDevelopers = developers.stream().
                 filter((t) -> t.getLanguage().startsWith("j")).
@@ -33,6 +34,10 @@ public class CollectionTest {
                 orElse(0);
         System.out.println("averageAge = " + averageAge);
 
+        Map<Integer, List<Developer>> collect = developers.
+                stream().
+                collect(Collectors.groupingBy((t) -> t.getAge()));
+        System.out.println("collect = " + collect);
     }
 
 }
