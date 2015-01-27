@@ -1,9 +1,9 @@
 package com.airhacks;
 
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,14 +17,18 @@ import javax.ws.rs.Path;
 public class ServicesResource {
 
     @Inject
-    Instance<Service> services;
+    List<Service> services;
+
+    @Inject
+    @Info
+    Consumer<String> LOG;
 
     @GET
     public String all() {
-        return StreamSupport.stream(services.spliterator(), false).
-                filter(s -> s.isActive()).
-                map(s -> s.getClass().
-                        getName()).collect(Collectors.joining(","));
+        LOG.accept("In method all");
+        return services.stream().
+                map(s -> s.getClass().getName()).
+                collect(Collectors.joining(","));
 
     }
 }
