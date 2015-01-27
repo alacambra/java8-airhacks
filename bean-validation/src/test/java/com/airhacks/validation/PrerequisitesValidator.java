@@ -15,6 +15,11 @@ public class PrerequisitesValidator implements ConstraintValidator<Prerequisites
     private ScriptEngine engine;
     private Prerequisites annotation;
 
+    /**
+     * Nashorn scripts could be injected and fetched from DB.
+     *
+     * @Inject @Validation("workshop") Instance<String> script;
+     */
     @Override
     public void initialize(Prerequisites annotation) {
         ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
