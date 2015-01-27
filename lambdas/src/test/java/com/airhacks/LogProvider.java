@@ -10,7 +10,13 @@ import java.util.logging.Logger;
 public class LogProvider {
 
     public static Consumer<String> get() {
-        return Logger.getGlobal()::info;
+        return new Consumer<String>() {
+
+            @Override
+            public void accept(String t) {
+                Logger.getGlobal().info(t);
+            }
+        };
     }
 
 }
